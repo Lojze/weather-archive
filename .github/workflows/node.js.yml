@@ -23,6 +23,7 @@ jobs:
           ${{ runner.OS }}-node-
     - run: npm ci
     - run: npm run start
+    - run: echo "npm run start command has been executed"
     - name: Commit, push and pull changes
       run: |
         git config --local user.email "action@github.com"
