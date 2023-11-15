@@ -13,7 +13,14 @@ jobs:
     - name: Use Node.js 16.x
       uses: actions/setup-node@v2
       with:
-        node-version: 16.x
+        node-version: 20.x
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-
     - run: npm ci
     - run: npm run start
     - name: Commit, push and pull changes
