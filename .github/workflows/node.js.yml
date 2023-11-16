@@ -26,8 +26,9 @@ jobs:
     - run: echo "npm run start command has been executed"
     - name: Commit, push and pull changes
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "11644830+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "BOT"
+        git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         git add -A
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update data" && git push)
-        git pull
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update data" && git push -f || echo "no file change")
+        git pull --rebase
