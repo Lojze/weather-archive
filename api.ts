@@ -101,34 +101,6 @@ export async function getWeatherData(id: string): Promise<WeatherData> {
         ?.getAttribute("class");
     const nightWindLevel = night.querySelector("p.win > span")?.textContent;
     const nightSunset = night.querySelector("p.sun > span")?.textContent;
-
-    console.log({
-        day: {
-            date: dayDate,
-            weather: dayWeather,
-            sky: daySky,
-            temp: dayTemp,
-            tempUnit: dayTempUnit,
-            wind: {
-                direction: dayWindDirection ?? undefined,
-                directionCode: dayWindDirectionCode ?? undefined,
-                level: dayWindLevel,
-            },
-            sunrise: daySunrise,
-        },
-        night: {
-            date: nightDate,
-            weather: nightWeather,
-            temp: nightTemp,
-            tempUnit: nightTempUnit,
-            wind: {
-                direction: nightWindDirection ?? undefined,
-                directionCode: nightWindDirectionCode ?? undefined,
-                level: nightWindLevel,
-            },
-            sunset: nightSunset,
-        },
-    })
     return {
         day: {
             date: "",
