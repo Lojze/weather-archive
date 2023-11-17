@@ -59,7 +59,7 @@ function getWeatherData(id) {
             .querySelector("p.win > i")) === null || _q === void 0 ? void 0 : _q.getAttribute("class");
         const nightWindLevel = (_r = night.querySelector("p.win > span")) === null || _r === void 0 ? void 0 : _r.textContent;
         const nightSunset = (_s = night.querySelector("p.sun > span")) === null || _s === void 0 ? void 0 : _s.textContent;
-        console.log({
+        return {
             day: {
                 date: dayDate,
                 weather: dayWeather,
@@ -84,33 +84,6 @@ function getWeatherData(id) {
                     level: nightWindLevel,
                 },
                 sunset: nightSunset,
-            },
-        });
-        return {
-            day: {
-                date: "",
-                weather: "",
-                sky: "",
-                temp: "",
-                tempUnit: "",
-                wind: {
-                    direction: "" !== null && "" !== void 0 ? "" : undefined,
-                    directionCode: "" !== null && "" !== void 0 ? "" : undefined,
-                    level: "",
-                },
-                sunrise: "",
-            },
-            night: {
-                date: "",
-                weather: "",
-                temp: "",
-                tempUnit: "",
-                wind: {
-                    direction: "" !== null && "" !== void 0 ? "" : undefined,
-                    directionCode: "" !== null && "" !== void 0 ? "" : undefined,
-                    level: "",
-                },
-                sunset: "",
             },
         };
     });
