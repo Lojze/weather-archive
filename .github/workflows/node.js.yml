@@ -32,5 +32,4 @@ jobs:
         git config --local user.name "BOT"
         git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
         git add -A
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update data" && git pull --strategy-option=theirs && git push || echo "Failed to push changes")
-        git pull --rebase
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update data" && git pull --rebase && git push || echo "Failed to push changes")
