@@ -1,36 +1,36 @@
-name: Run npm start every hour, commit and pull changes
+# name: Run npm start every hour, commit and pull changes
 
-on:
-  schedule:
-    - cron:  '0 * * * *'
+# on:
+#   schedule:
+#     - cron:  '0 * * * *'
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Use Node.js 16.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 16.x
-    - name: Cache Node.js modules
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.OS }}-node-
-    - run: npm ci
-    - run: npm run start
-    - run: echo "npm run start command has been executed"
-    - name: Commit, push and pull changes
-      run: |
-        git config --local user.email "11644830+github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "BOT"
-        git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        git add .
-        git commit -m "Update data" || echo "No changes to commit"
-        git push || (git pull --rebase && git push || echo "Failed to push changes")
+#     steps:
+#     - uses: actions/checkout@v2
+#       with:
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#     - name: Use Node.js 16.x
+#       uses: actions/setup-node@v2
+#       with:
+#         node-version: 16.x
+#     - name: Cache Node.js modules
+#       uses: actions/cache@v2
+#       with:
+#         path: ~/.npm
+#         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+#         restore-keys: |
+#           ${{ runner.OS }}-node-
+#     - run: npm ci
+#     - run: npm run start
+#     - run: echo "npm run start command has been executed"
+#     - name: Commit, push and pull changes
+#       run: |
+#         git config --local user.email "11644830+github-actions[bot]@users.noreply.github.com"
+#         git config --local user.name "BOT"
+#         git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+#         git add .
+#         git commit -m "Update data" || echo "No changes to commit"
+#         git push || (git pull --rebase && git push || echo "Failed to push changes")
